@@ -1,0 +1,20 @@
+class Solution:
+    def subsets(self, nums: List[int]) -> List[List[int]]:
+        res = []
+
+        path = []
+        def dfs(i, path):
+            if i >= len(nums):
+                res.append(path[:])
+                return
+            
+            #choose
+            path.append(nums[i])
+            dfs(i+1, path)
+
+            #not choosen
+            path.pop()
+            dfs(i+1, path)
+        
+        dfs(0, path)
+        return res
